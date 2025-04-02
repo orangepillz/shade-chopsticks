@@ -57,6 +57,8 @@ func (t *transport) RoundTrip(req *http.Request) (resp *http.Response, err error
 
 // HandleElectrsRequest forwards every request to the electrs HTTP server
 func (r *Router) HandleElectrsRequest(res http.ResponseWriter, req *http.Request) {
+	res.Header().Set("Access-Control-Allow-Origin", "*")
+
 	electrsURL := r.Config.ElectrsURL()
 	parsedURL, _ := url.Parse(electrsURL)
 
